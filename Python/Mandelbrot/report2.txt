@@ -1,0 +1,11 @@
+
+Time for function mandelbrot1 for input value 40: 4.592371940612793 seconds
+Time for function mandelbrot1 for input value 100: 7.793729066848755 seconds
+Time for function mandelbrot1 for input value 500: 29.895731925964355 seconds
+Time for function mandelbrot1 for input value 1000: 59.15832495689392 seconds
+
+Time for function mandelbrot2 for input value 40: 0.5138499736785889 seconds
+Time for function mandelbrot2 for input value 100: 1.1738698482513428 seconds
+Time for function mandelbrot2 for input value 500: 5.4260900020599365 seconds
+Time for function mandelbrot2 for input value 1000: 10.451585054397583 seconds
+
