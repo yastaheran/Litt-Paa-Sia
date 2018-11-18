@@ -1,0 +1,12 @@
+"""
+Colour theme 1 for Python.
+"""
+
+comment : 0,31
+string : 0,32
+functiondef : 0,33
+classdef : 0,33
+try/except : 0,35
+for-loops : 0,35
+while-loops : 0,35
+if/else :  0,35

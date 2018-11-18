@@ -1,0 +1,8 @@
+comment : 1,32
+string : 0,36
+functiondef : 1,35
+classdef : 1,35
+try/except : 1,36
+for-loops : 0,34
+while-loops : 0,34
+if/else :  1,36

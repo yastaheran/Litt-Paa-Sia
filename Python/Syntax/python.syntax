@@ -1,0 +1,8 @@
+"NNNN something": comment
+"NN something NN" : string
+"def" : functiondef
+"class" : classdef
+"try except" : try/except 
+"for in" : for-loops
+"while": while-loops
+"if  else ": if/else
