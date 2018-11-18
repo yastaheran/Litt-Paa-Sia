@@ -1,0 +1,58 @@
+<!-- ./templates/plot_temperature.html -->
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<style type="text/css">
+			body{
+				margin:0;
+				padding:0;
+				font-family: Sans-Serif;
+				line-height: 1.5em;
+                background-color:#EFFFFF;
+			}
+			main {
+				padding-bottom: 10010px;
+				margin-bottom: -10000px;
+				float: left;
+				width: 100%;
+			}
+			#nav {
+				float: left;
+				width: 200px;
+				margin-left: -100%;
+				padding-bottom: 10010px;
+				margin-bottom: -10000px;
+				background: #FFF;
+			}
+			#wrapper {
+				overflow: hidden;
+			}
+			#content {
+				margin-left: 100px; /* Same as 'nav' width */
+			}
+			p {
+				color: #555;
+			}
+
+		</style>	
+	</head>
+	<body>
+		<div id="wrapper">
+			<main>
+				<div id="content">
+					<h1>Plot CO2 vs Time</h1>
+                            <h2>Choose Time Range and y-axis</h2>
+                            <form name="temp" action="/INF3331-yast/assigment6/web_visualization.py" method="POST">
+                                 Choose time range: min <input type="text" name="time1">
+                                 max <input type="text" name="time2">
+                            <br> Choose ymin <input type="text" name="ymin">
+                                ymax <input type="text" name="ymax">
+                            <br> <input type="submit" value="Submit">
+                            </form>
+				</div>
+			</main>
+            <li><<a href="/index.html"> temperature </a></li>
+		</div>
+	</body>
+</html>
