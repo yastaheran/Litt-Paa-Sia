@@ -1,2 +1,2 @@
-# Python
-Some programs written in Python and Shell
+# Litt På Sia
+Noen programmer laget på fritiden.
