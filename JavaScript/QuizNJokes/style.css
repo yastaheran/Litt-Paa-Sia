@@ -1,0 +1,147 @@
+body {
+  overflow: auto;
+  font-family: 'open sans';
+  font-weight: 300;
+  animation-name: loader;
+  animation-duration: 0s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+header {
+  text-align: center;
+  overflow: hidden;
+  width: 100%;
+  padding: 20px 10px;
+  background-color: #effaff;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 300;
+  margin: 10px;
+}
+
+h3 {
+  font-size: 16px;
+  font-style: italic;
+  margin: 10px;
+  text-align: left;
+}
+
+a {
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+p {
+  text-align: left;
+  margin: 10px;
+}
+
+select {
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+button {
+  color: grey;
+  background-color: #ecf6f9;
+  font-size: 20px;
+  margin: 10px;
+}
+
+button:hover {
+  background-color: #c4e7ed;
+}
+
+li:hover {
+  color: #80ced6;
+}
+
+.alert {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.joke {
+  font-family: 'kalam';
+  font-size: 14px;
+}
+
+.quiz {
+  list-style: none;
+  font-size: 20px;
+  padding: 20px;
+  margin: 5px;
+  transition: 1s;
+  background-color: #d8eff3;
+  border-radius: 8px;
+}
+
+#nameOfApp {
+  font-size: 30px;
+  font-family: 'open sans';
+  font-weight: 600;
+}
+
+#nameOfApp:hover {
+  color: darkgrey;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  grip-gap: 10px;
+  text-align: center;
+}
+
+#start {
+  grid-row-start: 1;
+  grid-column-start: 4;
+}
+
+#selectionArea {
+  grid-row-start: 1;
+  grid-column-start: 4;
+}
+
+#specificationArea {
+  grid-row-start: 1;
+  grid-column-start: 4;
+}
+
+#num {
+  width: 20%;
+  padding: 5px 5px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+#jokeArea{
+  background-color: #d8eff3;
+  grid-row-start: 1;
+  grid-column-start: 5;
+}
+
+#quizArea {
+  background-color: #80ced6;
+  grid-row-start: 1;
+  grid-column-start: 1;
+}
+
+@keyframes loader {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
