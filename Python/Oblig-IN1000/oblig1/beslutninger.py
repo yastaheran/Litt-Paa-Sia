@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #Oppgave 2: Beslutninger
 
 print("Vil du ha en brus?")
