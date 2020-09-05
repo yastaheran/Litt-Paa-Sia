@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #Oppgave 3: Problemløsning med beslutninger
 #3.3
 
