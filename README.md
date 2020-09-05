@@ -1,2 +1,2 @@
 # Litt På Sia
-Noen programmer laget på fritiden.
+Noen emner tatt i fritiden.
