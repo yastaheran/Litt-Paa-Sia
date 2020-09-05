@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #Oppgave 1: Utskriftsprosedyre
 
 def prosedyre():
