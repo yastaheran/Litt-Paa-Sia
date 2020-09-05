@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #Oppgave 1: Utskrift og innlesing med variabler
 
 #DEL 1.2-1.3
