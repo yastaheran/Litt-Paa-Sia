@@ -9,6 +9,11 @@ Klassen Dataklynge skal holde rede på en liste med racks, og må tilby en metod
 et nytt Rack-objekt som legges inn i listen, og noden plasseres i det nye racket. *Tips: Det kan være lurt å ta inn antall noder per rack i konstruktøren til Dataklynge.*
 
 ## 1. Klasser
-Skriv klassene beskrevet under “Programdesign”. Der det ikke er oppgitt hva slags datatype som
-skal brukes (for eksempel ved valg av listetype) forventes det at du selv gjør fornuftige valg og
-begrunner disse gjennom kommentarer i koden.
+Skriv klassene beskrevet under “Programdesign”. Der det ikke er oppgitt hva slags datatype som skal brukes (for eksempel ved valg av listetype) forventes det at du selv gjør fornuftige valg og begrunner disse gjennom kommentarer i koden.
+
+## 2. Antall prosessorer og minnekrav
+Lag en metode antProsessorer i Dataklynge som returnerer det totale antall prosessorer i dataklyngen. 
+
+Noen programmer trenger mye minne, typisk et gitt antall GB med minne på hver node vi bruker. Vi er derfor interessert i å vite hvor mange noder som har nok minne til at vi kan bruke dem. Lag en metode noderMedNokMinne(int paakrevdMinne) i Dataklynge som returnerer antall noder med minst paakrevdMinne GB minne. 
+
+Utvid klassene Node og Rack slik at de støtter implementeringen av disse metodene.
