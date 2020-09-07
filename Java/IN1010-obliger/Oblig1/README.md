@@ -17,3 +17,10 @@ Lag en metode antProsessorer i Dataklynge som returnerer det totale antall prose
 Noen programmer trenger mye minne, typisk et gitt antall GB med minne på hver node vi bruker. Vi er derfor interessert i å vite hvor mange noder som har nok minne til at vi kan bruke dem. Lag en metode noderMedNokMinne(int paakrevdMinne) i Dataklynge som returnerer antall noder med minst paakrevdMinne GB minne. 
 
 Utvid klassene Node og Rack slik at de støtter implementeringen av disse metodene.
+
+## 3. Hovedprogram
+Skriv en klasse Hovedprogram med en main-metode for å teste at klassene virker som de skal. Lag en dataklynge, abel, og la det være plass til 12 noder i hvert rack. Legg inn 650 noder med 64 GB minne og en prosessor hver. Legg også inn 16 noder med 1024 GB minne og to
+prosessorer.
+
+Sjekk hvor mange noder som har minst 32 GB, 64 GB og 128 GB minne. Finn totalt antall
+prosessorer, og sjekk hvor mange rack som brukes. Skriv ut svarene i terminalen. 
