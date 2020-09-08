@@ -20,3 +20,11 @@ Hvite resepter har i seg selv ingen nye egenskaper (utover et annet klassenavn),
 Det er stor forskjell på vanlige (hvite) og blå resepter (blant annet er utstedelsen av en blå resept forbundet med en del kontroller), men igjen skal vi gjøre en forenkling og si at bare prisen som betales er forskjellig: Blå resepter er alltid sterkt subsidiert, og for enkelhets skyld sier vi her at de har 75% rabatt slik at pasienten må betale 25% av prisen på legemidlet.
 
 Klassen Resept skal ha følgende metoder som henter relevant data: hentId, hentLegemiddel (henter tilhørende Legemiddel), hentLege (henter utskrivende Lege), hentPasientId og hentReit. I tillegg skal klassen ha følgende metoder: public boolean bruk: Forsøker å bruke resepten én gang. Returner false om resepten alt er oppbrukt, ellers returnerer den true. abstract public String farge: Returnerer reseptens farge. Enten “hvit” eller "blaa". abstract public double prisAaBetale: Returnerer prisen pasienten må betale.
+
+## Del C: Leger
+Konstruktøren i Lege tar kun inn en String med legens navn. Lege skal ha en metode for å hente ut navnet til legen. Noen leger er Spesialister. Spesialister har fått godkjenningsfritak til å skrive ut resept på narkotiske legemidler. Å ha godkjenningsfritak kan gjelde for andre enn leger, så dette skal implementeres som et grensesnitt (interface). Alle som har godkjenningsfritak, har en kontroll ID, som kan hentes ut for å sjekke at godkjenningsfritaket ikke blir misbrukt. Spesialist skal arve fra Lege og skal i tillegg implementere følgende grensesnitt.
+
+## Del D: Integrasjonstest
+I denne delen skal du lage et hovedprogram som gjør det vi vil kalle en minimal integrasjonstest - vi skal altså teste hvordan de forskjellige delene av systemet fungerer sammen. Hovedprogrammet skal gjøre følgende:
+* Opprette minimum en instans av hver eneste klasse og la disse inneholde nødvendige referanser til andre objekter.
+* Skrive ut relevant informasjon om hvert enkelt objekt. (Her vil det lønne seg å ha overskrevet toString() metoden i alle klassene du har skrevet).
