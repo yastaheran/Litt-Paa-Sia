@@ -9,3 +9,8 @@ også er det første som blir tatt ut. På denne måten kan listen benyttes som 
 Til sist skal du også implementere metodene stoerrelse() og hent(int pos), der sistnevnte henter ut et element (uten å fjerne det fra lista) på oppgitt indeks (husk å telle fra indeks 0 og oppover).
 
 Når vi arbeider med indekser kan vi møte på feil dersom vi forsøker å nå en indeks som ikke eksisterer. Gyldige indekser i listen vil være være som vi er vant til i en array eller en ArrayList, altså fra og med 0 og til, men ikke med, listens størrelse. For å ta høyde for eventuelle feil skal vi en egendefinerte unntaksklasse.
+
+## Stabel
+En stabel er en liste som fungerer litt annerledes enn en vanlig lenkeliste. Når man legger et element inn, skal det være det første som skal hentes ut.
+
+Skriv klassen Stabel<T>. Klassen skal arve fra Lenkeliste<T>, men skal i tillegg ha metodene leggPaa (T x) og taAv(). Disse metodene skal henholdsvis legge til og fjerne elementer fra slutten av listen, slik at det siste elementet som legges inn er det første som tas ut (Last in, First out). Merk: Det forventes her at du tar i bruk metodene som er arvet fra Lenkeliste<T>.
