@@ -18,3 +18,5 @@ Hvite resepter har i seg selv ingen nye egenskaper (utover et annet klassenavn),
 
 ### Blå resept
 Det er stor forskjell på vanlige (hvite) og blå resepter (blant annet er utstedelsen av en blå resept forbundet med en del kontroller), men igjen skal vi gjøre en forenkling og si at bare prisen som betales er forskjellig: Blå resepter er alltid sterkt subsidiert, og for enkelhets skyld sier vi her at de har 75% rabatt slik at pasienten må betale 25% av prisen på legemidlet.
+
+Klassen Resept skal ha følgende metoder som henter relevant data: hentId, hentLegemiddel (henter tilhørende Legemiddel), hentLege (henter utskrivende Lege), hentPasientId og hentReit. I tillegg skal klassen ha følgende metoder: public boolean bruk: Forsøker å bruke resepten én gang. Returner false om resepten alt er oppbrukt, ellers returnerer den true. abstract public String farge: Returnerer reseptens farge. Enten “hvit” eller "blaa". abstract public double prisAaBetale: Returnerer prisen pasienten må betale.
