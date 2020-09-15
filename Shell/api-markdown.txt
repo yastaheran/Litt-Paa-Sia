@@ -1,0 +1,340 @@
+# Web API overview
+## Return Codes
+* 2XX - The API call was successful.
+* 4XX - The API call had a validation or input error.
+* 5XX - The API call was unsuccessful. You should retry later.
+
+## Content Type/Accept Headers
+For JSON API content negotiation header use the following value: application/vnd.api+json
+
+## Validation
+| STATUS | 400 |
+|--------|-----|
+
+*Example*	
+
+    {
+       "errors":[
+          {
+             "message":"SomeFieldOne : SomeFieldOne is required."
+          },
+          {
+             "message":"SomeFieldTwo : SomeFieldTwo is required."
+          }
+       ]
+    }
+
+# • API Tokens
+When using the API directly on behalf of a user the request must be authenticated with a bearer token. API tokens are generated with the token endpoint and upon the request of a resource the API token is presented as part of an authorization header.
+
+## Obtaining an API token
+### Call
+| HTTP VERB               | POST                                                            |                         |      |
+|-------------------------|-----------------------------------------------------------------|-------------------------|------|
+| URL                     | http(s)://pureservice/api/authentication                        |                         |      |
+| QUERY STRING PARAMETERS | NAME                                                            | REQUIRED                | TYPE |
+| username                | yes                                                             | string                  |      |
+| password                | yes                                                             | string                  |      |
+| role                    | yes                                                             | integer (e.g. 10,20,30) |      |
+| EXAMPLE                 | /api/authentication?username=username&password=password&role=20 |                         |      |
+
+### Response
+| STATUS CODE              | 200                                                                                                                |
+|--------------------------|--------------------------------------------------------------------------------------------------------------------|
+| BODY (example) JWT token | "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3oiMSIsInJvbCI6IkFnZW50In0.ZfuufY6_oFEnS-Y5lm17J1cx4_rEE_vK9r4ez9jXLvo" |
+
+## Using an API token
+### Call
+| HTTP VERB       | GET                                                                                                                                                                                                                                                                        |          |                               |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|-------------------------------|
+| URL             | http(s)://pureservice/api/status/                                                                                                                                                                                                                                          |          |                               |
+| SCHEME          | Bearer authentication scheme [RFC2617]                                                                                                                                                                                                                                     |          |                               |
+| HEADERS         | NAME                                                                                                                                                                                                                                                                       | REQUIRED | TYPE                          |
+|                 | Authorization                                                                                                                                                                                                                                                              | yes      | String (prefixed with Bearer) |
+| Example request | GET /api/statuses HTTP/1.1<br>**Host**: customer.pureservice.com<br>**Authorization**: Bearer r2hNPU45duyq2vk1dBbIGu/SVt0b5UJSaUX4e70wCCEx+tMCC92DZJOpOTGdnTe6iYOdEMFyQXOxDR8K1+kPjic0BKnM396aOJDAC7U7D9eNdyt2YBIFrizW8hpb0bHK6n5o7IJ6FGzZaWf9NgbXqkO+fusyA0u6Xe6a7aNcMH0= |          |                               |
+
+# • API Keys
+API Keys allows the integration of the Pureservice API with other 3rd party services and are explicitly administered via the Pureservice web interface. They have a limited or unlimited lifetimes and Administrator rights.
+
+## API key administration
+To administer API keys navigate to Pureservice > Administration > Security > API keys. Via the administration page API keys are added, deleted, enabled, disabled and copied to clipboard.
+
+## Using an API Key
+### Call
+| HTTP VERB       | GET                                                                                                                                                                                                                                                                       |          |        |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|--------|
+| URL             | http(s)://pureservice/api/status/                                                                                                                                                                                                                                         |          |        |
+| HEADERS         | NAME                                                                                                                                                                                                                                                                      | REQUIRED | TYPE   |
+|                 | X-Authorization-Key                                                                                                                                                                                                                                                       | yes      | String |
+| Example request | GET /api/statuses HTTP/1.1<br>**Host**: customer.pureservice.com<br>**X-Authorization-Key**: r2hNPU45duyq2vk1dBbIGu/SVt0b5UJSaUX4e70wCCEx+tMCC92DZJOpOTGdnTe6iYOdEMFyQXOxDR8K1+kPjic0BKnM396aOJDAC7U7D9eNdyt2YBIFrizW8hpb0bHK6n5o7IJ6FGzZaWf9NgbXqkO+fusyA0u6Xe6a7aNcMH0= |          |        |
+
+# • HTTP GET Method
+## Get a single entity by id
+Use the entity’s ID as part of the URL or as a parameter when fetching a single entity.
+
+### Call
+| HTTP VERB | GET                                              |          |         |
+|-----------|--------------------------------------------------|----------|---------|
+| URL       | http(s)://pureservice/api/[entity]/[id]          |          |         |
+| PARAMS    | NAME                                             | REQUIRED | TYPE    |
+|           | id                                               | no       | integer |
+| Example   | https://customer.pureservice.com/api/status/1    |          |         |
+|           | https://customer.pureservice.com/api/status?id=1 |          |         |
+
+### Response
+| STATUS | 200 |
+|--------|-----|
+
+*Example*
+
+    {
+      "statuses": [
+        {
+          "links": {
+            "requestType": {
+              "id": 1
+            },
+            "createdBy": {
+              "id": 1
+            },
+            "modifiedBy": {
+              "id": null
+            }
+          },
+          "name": "Ny",
+          "userDisplayName": "Mottatt",
+          "index": 1,
+          "default": true,
+          "disabled": false,
+          "coreStatus": 10,
+          "requestTypeId": 1,
+          "id": 1,
+          "created": "2015-12-21T09:53:38.2930927+00:00",
+          "modified": null,
+          "createdById": 1,
+          "modifiedById": null
+        }
+      ]
+    }
+
+## Get all entities by type
+Use the entity’s name as part of the URL when fetching all entities for a given type.
+
+### Call
+| HTTP VERB | GET                                          |          |      |
+|-----------|----------------------------------------------|----------|------|
+| URL       | http(s)://pureservice/api/[entity]/          |          |      |
+| Example   | https://customer.pureservice.com/api/status/ | REQUIRED | TYPE |
+
+### Response
+| STATUS | 200 |
+|--------|-----|
+
+*Example*
+
+    {
+       "statuses":[
+    
+        ...ALL STATUSES HERE...
+    
+       ]
+    }
+
+## Filtering multiple entities by ids
+Use an id filter when you want to filter entities by a list of ids. 
+
+### Call
+| HTTP VERB | GET                                                  |          |       |
+|-----------|------------------------------------------------------|----------|-------|
+| URL       | http(s)://pureservice/api/[entity]/                  |          |       |
+| PARAMS    | NAME                                                 | REQUIRED | TYPE  |
+|           | ids                                                  | yes      | int[] |
+| Example   | https://customer.pureservice.com/api/status/?ids=1,5 | REQUIRED | TYPE  |
+
+### Response
+*Example*
+	
+    {
+      "statuses": [
+        {
+          "links": {
+            … linked data…
+          },
+          "name": "Ny",
+          "userDisplayName": "Mottatt",
+          "index": 1,
+          "coreStatus": 10,
+          "id": 1,
+          … more information …
+        },
+        {
+          "links": {
+            … linked data…": null
+            }
+          },
+          "name": "Venter - ekstern",
+          "userDisplayName": "Under arbeid",
+          "index": 5,
+          "coreStatus": 40,
+          "id": 5,
+          … more information …
+        }
+      ]
+    }
+
+## Filtering multiple entities by a filter
+Entities can be filtered with a query. “Standard” operators are available as well as some non-standard ones like Contains. 
+
+Filters can be nested into sub-filters with AND/OR’s, for example “name=”Closed” OR (default=true” AND name=”Open”).
+
+### Operators
+| Operand      |                              |
+|--------------|------------------------------|
+| Equals       | =                            |
+| Less than    | >                            |
+| Greater than | <                            |
+| Contains     | [Property].Contains([Value]) |
+| Boolean      | ![Property] \|\| [Property]  |
+| And          | AND                          |
+| Or           | OR                           |
+
+### Call
+| HTTP VERB | GET                                                  |          |        |
+|-----------|------------------------------------------------------|----------|--------|
+| URL       | http(s)://pureservice/api/[entity]/                  |          |        |
+| PARAMS    | NAME                                                 | REQUIRED | TYPE   |
+|           | filter                                               | yes      | string |
+| Example   | https://customer.pureservice.com/api/status/?ids=1,5 | REQUIRED | TYPE   |
+
+### Response
+| STATUS | 200|
+|--------|-----|
+
+*Example*
+	
+    {
+      "statuses": [
+        {
+          "links": {
+            "requestType": {
+              "id": 1
+            },
+            "createdBy": {
+              "id": 1
+            },
+            "modifiedBy": {
+              "id": null
+            }
+          },
+          "name": "Lukket",
+          "userDisplayName": "Løst og lukket",
+          "index": 8,
+          "default": true,
+          "disabled": false,
+          "coreStatus": 60,
+          "requestTypeId": 1,
+          "id": 8,
+          "created": "2015-12-21T09:53:38.2960947+00:00",
+          "modified": null,
+          "createdById": 1,
+          "modifiedById": null
+        }
+      ]
+    }
+
+## Sorting results
+Use a sort argument to sort the results. 
+
+### Call
+| HTTP VERB | GET                                                                                                                        |          |        |
+|-----------|----------------------------------------------------------------------------------------------------------------------------|----------|--------|
+| URL       | http(s)://pureservice/api/[entity]/                                                                                        |          |        |
+| PARAMS    | NAME                                                                                                                       | REQUIRED | TYPE   |
+|           | sort                                                                                                                       | yes      | string |
+| Example   | https://customer.pureservice.com/api/status/?ids=1,5<br>https://customer.pureservice.com/api/status/?sort=id desc,name asc |          |        |
+
+## Paging results
+### Call
+| HTTP VERB | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                      |         |
+|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|---------|
+| URL       | http(s)://pureservice/api/[entity]/                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                      |         |
+| PARAMS    | NAME                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | REQUIRED             | TYPE    |
+|           | start                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | If offset is desired | integer |
+|           | limit                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | If limit is desired  | integer |
+| Example   | https://customer.pureservice.com/api/status/?start=0 HYPERLINK "https://mobile-dev.pureservice.com/api/status/?start=0&limit=10" HYPERLINK "https://mobile-dev.pureservice.com/api/status/?start=0 HYPERLINK "https://mobile-dev.pureservice.com/api/status/?start=0&limit=10"& HYPERLINK "https://mobile-dev.pureservice.com/api/status/?start=0&limit=10"limit=10" HYPERLINK "https://mobile-dev.pureservice.com/api/status/?start=0&limit=10"& HYPERLINK "https://mobile-dev.pureservice.com/api/status/?start=0&limit=10" HYPERLINK "https://mobile-dev.pureservice.com/api/status/?start=0 HYPERLINK "https://mobile-dev.pureservice.com/api/status/?start=0&limit=10"& HYPERLINK "https://mobile-dev.pureservice.com/api/status/?start=0&limit=10"limit=10" HYPERLINK "https://mobile-dev.pureservice.com/api/status/?start=0&limit=10"limit=10 |                      |         |
+
+## Including relationships
+If the query should load related entities as part of the query then those relationships should be included.
+
+### Call
+| HTTP VERB | GET                                                              |          |                               |
+|-----------|------------------------------------------------------------------|----------|-------------------------------|
+| URL       | http(s)://pureservice/api/[entity]/                              |          |                               |
+| PARAMS    | NAME                                                             | REQUIRED | TYPE                          |
+|           | include                                                          | yes      | string (comma separated list) |
+| Example   | https://customer.pureservice.com/api/status/?include=requesttype |          |                               |
+
+# • HTTP POST Method
+## Creating entities
+### Creating an Ticket
+| HTTP VERB | POST                                         |
+|-----------|----------------------------------------------|
+| URL       | http(s)://pureservice/api/[entity]/          |
+| Example   | https://customer.pureservice.com/api/ticket/ |
+
+*BODY (example) JSON payload*
+
+    {
+       "tickets":[
+          {
+             "subject":"Example summary",
+             "description":"Example description",
+             "links":{
+                "user":"20",
+                "ticketType":"1",
+                "priority":"3",
+                "status":"3",
+                "source":"1",
+                "requestType":"1"
+             }
+          }
+       ]
+    }
+
+### Response
+| STATUS | 201|
+|--------|-----|
+
+# • HTTP PUT Method
+## Updating entities
+### Call
+HTTP VERB	PUT
+URL	http(s)://pureservice/api/[entity]/[id]
+
+Example	https://customer.pureservice.com/api/ticket/96
+
+*BODY (example) JSON payload*
+
+    {
+       "tickets":[
+          {
+             "subject":"Updated summary",
+             "description":"Updated description",
+             "links":{
+                "user":"20",
+                "ticketType":"1",
+                "priority":"2",
+                "status":"2",
+                "source":"1",
+                "assignedAgent":"3",
+                "assignedGroup":"4",
+                "createdBy":"4",
+                "modifiedBy":"4"
+             }
+          }
+       ]
+    }
+
+### Response
+| STATUS | 201|
+|--------|-----|
